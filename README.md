@@ -4,6 +4,57 @@
 Создать RESTful веб-приложение “Task Management System” для управления задачами с использованием Spring Boot, применяя ключевые компоненты фреймворка, включая автоматическую конфигурацию, стартеры,
 работу с базой данных и безопасность.
 
+---
+
+### Структура проекта
+
+```
+DEMO
+│
+├── .mvn
+│   └── wrapper
+│
+├── src
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── example
+│       │           └── demo
+│       │               ├── config
+│       │               │   └── SecurityConfig.java
+│       │               ├── controller
+│       │               │   └── TaskController.java
+│       │               ├── exception
+│       │               │   ├── ResourceNotFoundException.java
+│       │               │   └── ResourceNotFoundExceptionHandler.java
+│       │               ├── model
+│       │               │   └── Task.java
+│       │               ├── repository
+│       │               │   └── TaskRepository.java
+│       │               └── DemoApplication.java
+│       │
+│       └── resources
+│           ├── static
+│           ├── templates
+│           └── application.yml
+│
+├── test
+│   └── java
+│       └── com
+│           └── example
+│               └── demo
+│                   └── DemoApplicationTests.java
+│
+├── target
+│
+├── .gitattributes
+├── .gitignore
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+
+```
 
 ### 1. Проверка без аутентификации
 
