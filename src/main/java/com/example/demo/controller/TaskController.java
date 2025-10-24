@@ -12,21 +12,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-    
+ 
     @Autowired
     private TaskRepository taskRepository;
-    
+ 
     @GetMapping
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
-    
-    @PostMapping
-    public Task createTask(@RequestBody Task task) {
+ 
+    @GetMapping("/{id}")
+    public Task getTaskById(@PathVariable Long id) {
+        return taskRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Task not found with id " + id));
+    }
+
+     @PostMapping
+     public Task createTask(@RequestBody Task task) {
         task.setCreatedAt(LocalDateTime.now());
         return taskRepository.save(task);
     }
-    
+     
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
         return taskRepository.findById(id).map(task -> {
@@ -36,7 +42,7 @@ public class TaskController {
             return taskRepository.save(task);
         }).orElseThrow(() -> new ResourceNotFoundException("Task not found with id " + id));
     }
-    
+
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
